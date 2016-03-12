@@ -1,0 +1,51 @@
+@mixin dropdown-menu-actions($hover-color){
+    color: black;
+
+    &:hover{
+        border-left: 10px solid $solid-background;
+        background-color: $hover-color;
+        color: white;
+    }
+
+    &:active, &:focus{
+        border-left: 10px solid $solid-background;
+        color: white !important;
+        background-color: $hover-color !important;
+    }
+}
+
+@mixin border-radius($radius){
+    border-radius: $radius !important;
+    -webkit-border-radius: $radius !important;
+    -moz-border-radius: $radius !important;
+    -o-border-radius: $radius !important;
+}
+
+@mixin box-shadow($x, $y, $blur, $color){
+    box-shadow: $x $y $blur $color;
+    -webkit-box-shadow: $x $y $blur $color;
+    -moz-box-shadow: $x $y $blur $color;
+    -o-box-shadow: $x $y $blur $color;
+}
+
+@mixin inset-box-shadow($x, $y, $blur, $color){
+    box-shadow: inset $x $y $blur $color;
+    -webkit-box-shadow: inset $x $y $blur $color;
+    -moz-box-shadow: inset $x $y $blur $color;
+    -o-box-shadow: inset $x $y $blur $color;
+}
+
+@mixin animate($animation, $time){
+    animation: $animation $time;
+    -moz-animation: $animation $time;
+    -webkit-animation: $animation $time;
+    -o-animation: $animation $time;
+}
+
+@mixin transition($property, $time, $type){
+    transition: $property $time $type;
+    -webkit-transition: $property $time $type;
+    -moz-transition: $property $time $type;
+    -o-transition: $property $time $type;
+    -ms-transition: $property $time $type;
+}
