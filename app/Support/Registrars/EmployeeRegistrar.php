@@ -20,7 +20,14 @@ class EmployeeRegistrar implements Registrar{
 		$this->additionalInformationRepository = $additionalInformationRepository;
 	}
 
+	/**
+	 * Insert new record based on parameters passed.
+	 * @param  Model $model 
+	 * @param  array $data  
+	 * @return mixed        
+	 */
 	public function createFromModel($model, $data){
+		dd($data);
 		$this->setModelAndData($model, $data);
 
 		$this->setEmployeeBasicInformation($data);
@@ -31,6 +38,12 @@ class EmployeeRegistrar implements Registrar{
 		return $this->save($data);
 	}
 
+	/**
+	 * Update existing record based on parameters passed.
+	 * @param  Model $model 
+	 * @param  array $data  
+	 * @return mixed        
+	 */
 	public function updateFromModel($model, $data){
 		$this->setModelAndData($model, $data);
 
@@ -42,19 +55,36 @@ class EmployeeRegistrar implements Registrar{
 		return $this->save($data);
 	}
 
+	/**
+	 * Set local variable, model.
+	 * @param Model $model 
+	 */
 	public function setModel($model){
 		$this->model = $model;
 	}
 
+	/**
+	 * Set local variable, data.
+	 * @param array $data 
+	 */
 	public function setData($data = array()){
 		$this->data = $data;
 	}
 
+	/**
+	 * Set local variables, model and data.
+	 * @param Model $model 
+	 * @param array $data  
+	 */
 	public function setModelAndData($model, $data){
 		$this->setModel($model);
 		$this->setData($data);
 	}
 
+	/**
+	 * Set employee benefits.
+	 * @param array $data 
+	 */
 	private function setEmployeeBenefits($data){
 		if(isset($data['employee_id'])){
 			$this->model = \App\Employee::findOrFail($data['employee_id']);
@@ -73,6 +103,10 @@ class EmployeeRegistrar implements Registrar{
 		return $counter > 0;
 	}
 
+	/**
+	 * Set employee's basic information.
+	 * @param array $data 
+	 */
 	private function setEmployeeBasicInformation($data){
 		if(isset($data['employee_id'])){
 			$this->model->id = $data['employee_id'];
@@ -101,7 +135,10 @@ class EmployeeRegistrar implements Registrar{
 		$this->model->zipcode = $data['zipcode'];
 	}
 
-
+	/**
+	 * Set employee's contact information.
+	 * @param array $data 
+	 */
 	private function setContactInformation($data){
 		$contactInformation = !is_null($this->model->contactInformation) ? $this->model->contactInformation : new \App\ContactInformation;
 
@@ -115,6 +152,10 @@ class EmployeeRegistrar implements Registrar{
 		return $contactInformation;
 	}
 
+	/**
+	 * Set employee's additional information
+	 * @param [type] $data [description]
+	 */
 	private function setAdditionalInformation($data){
 		$additionalInformation = !is_null($this->model->additionalInformation) ? $this->model->additionalInformation : new \App\AdditionalInformation;
 
@@ -137,6 +178,11 @@ class EmployeeRegistrar implements Registrar{
 		return $additionalInformation;
 	}
 
+	/**
+	 * Persist model.
+	 * @param  array $data 
+	 * @return mixed       
+	 */
 	public function save($data){
 		$this->model->save();
 		$this->contactInformation->save();

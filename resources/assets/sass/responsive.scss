@@ -1,5 +1,15 @@
 
 @media only screen and (min-width: 768px) {
+	.employee-information-content-container{
+	    .employee-display-photo-container{
+	        img{
+	            position: absolute;
+	            left: calc(50% - 96px);
+	            top: -90px;
+	            width: 70%;
+	        }
+	    }
+	}
 }
 
 @media only screen and (max-width: 767px) {

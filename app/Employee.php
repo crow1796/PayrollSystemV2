@@ -53,6 +53,10 @@ class Employee extends Model implements SluggableInterface
                     ->withPivot('benefit_id_value');
     }
 
+    public function displayPhotos(){
+        return $this->hasOne('\App\DisplayPhoto', 'employee_id');
+    }
+
     public function dailyTimeRecords(){
         return $this->hasMany('App\DailyRecord', 'employee_id');
     }

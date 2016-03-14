@@ -1,3 +1,4 @@
+// @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 @import 'partials/variables.scss';
 @import 'partials/mixins.scss';
 @import 'partials/animations.scss';
@@ -11,7 +12,7 @@ html, body{
 }
 
 body{
-    font-family: "Droid Sans", "Sans";
+    font-family: "Droid Sans", "Arial", "Sans";
 }
 
 .table{
@@ -1019,6 +1020,168 @@ textarea{
 
     .selected-files-list-container{
         text-align: left;
+    }
+}
+
+.employee-information-header-container{
+    background: $solid-background;
+    color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    h2{
+        margin-bottom: 0 !important;
+    }
+    .btn-group{
+        .dropdown-toggle{
+            color: white !important;
+            font-size: 1em;
+            &:hover{
+                color: #aaa !important;
+                text-decoration: none !important;
+            }
+        }
+
+        .dropdown-menu{
+            padding: 0 !important;
+            @include border-radius(0);
+            background: $danger-color;
+            &:before{
+                content: "";
+                display: block;
+                position: absolute;    
+                left: 5px;
+                top: -7px;
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+                border-bottom: 7px solid darken($danger-color, 6%);
+            }
+
+            li{
+                a{
+                    color: white;
+                    &:hover{
+                        background: darken($danger-color, 10%);
+                    }
+                }
+            }
+
+            .dropdown-header{
+                color: white;
+                background: darken($danger-color, 6%);
+                text-align: center;
+            }
+        }
+    }
+}
+
+.employee-information-content-container{
+    .employee-display-photo-container{
+        position: relative;
+        img{
+            border-radius: 0 !important;
+        }
+    }
+
+    .employee-information-important-container{
+        margin-top: 110px;
+    }
+
+    .employee-information-content{
+        padding-top: 15px;
+    }
+}
+
+.bmpc-list{
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    &-item{
+        padding: 10px 0;
+        border-bottom: 1px dotted lighten($solid-background, 70%);
+        small{
+            color: lighten($solid-background, 25%);
+        }
+        span:not(.fa){
+            display: block;
+        }
+
+        &-title{
+            font-weight: bold;
+        }
+
+        &-content{
+            padding-left: 15px;
+        }
+    }
+}
+
+.nav-pills{
+    li.active{
+        a{
+            background: transparent;
+            color: $solid-background;
+            &:hover, &:active, &:focus{
+                color: $solid-background;
+                background: transparent;
+            }
+
+            .pill-highlighter{
+                background: linear-gradient(to right, white 0%, $primary-color 0%);
+                background-position: -100% 0;
+            }
+        }
+    }
+
+    li{
+        a{
+            border-radius: 0;
+            color: $solid-background;
+            position: relative;
+            &:hover, &:active, &:focus{
+                background: transparent;
+                .pill-highlighter{
+                    background-position: -100% 0;
+                }
+            }
+            .pill-highlighter{
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 4px;
+                width: 100%;
+                background: linear-gradient(to right, white 50%, $danger-color 50%);
+                background-size: 200% 100%;
+                background-position:0;
+                @include transition(all, .2s, linear);
+                @include border-radius(0);
+            }
+        }
+    }
+}
+
+.tab-content{
+    .page-header{
+        margin-top: 50px;
+    }
+}
+
+.information-group-container{
+    padding: 0px 30px;
+    .information-group{
+        .information-group-fields{
+            margin: 10px 0;
+            .information-label{
+                font-weight: bold;
+                display: block;
+                padding-bottom: 5px;
+            }
+            .information-field{
+                min-height: 36px;
+                padding: 7px 14px;
+                border: 1px solid darken($light-gray, 8%);
+            }
+        }
     }
 }
 

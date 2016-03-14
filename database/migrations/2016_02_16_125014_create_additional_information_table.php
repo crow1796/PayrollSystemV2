@@ -19,21 +19,33 @@ class CreateAdditionalInformationTable extends Migration
                     ->references('id')
                     ->on('employees')
                     ->onDelete('cascade');
-            $table->date('date_of_birth');
-            $table->text('place_of_birth');
-            $table->float('weight');
-            $table->float('height');
-            $table->string('religion');
-            $table->string('civil_status');
+            $table->date('date_of_birth')
+                    ->nullable();
+            $table->text('place_of_birth')
+                    ->nullable();
+            $table->float('weight')
+                    ->nullable();
+            $table->float('height')
+                    ->nullable();
+            $table->string('religion')
+                    ->nullable();
+            $table->string('civil_status')
+                    ->nullable();
             $table->string('name_of_spouse')
-                    ->default('NULL');
+                    ->nullable();
             $table->integer('number_of_children')
+                    ->nullable()
                     ->default(0);
-            $table->string('gender');
-            $table->string('educational_attainment');
-            $table->string('course');
-            $table->string('mother_name');
-            $table->string('father_name');
+            $table->string('gender')
+                    ->nullable();
+            $table->string('educational_attainment')
+                    ->nullable();
+            $table->string('course')
+                    ->nullable();
+            $table->string('mother_name')
+                    ->nullable();
+            $table->string('father_name')
+                    ->nullable();
             $table->timestamps();
         });
     }
