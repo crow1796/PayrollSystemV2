@@ -14,12 +14,11 @@ class EventTypeTableSeeder extends Seeder
         DB::table('event_types')->delete();
 
         $eventTypes = [
-        	['name' => 'Regular Holiday', 'slug' => 'regular-holiday', 'class_value' => 'regular-holiday', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Special Non-working Holiday', 'slug' => 'special-non-working-holiday', 'class_value' => 'special-non-working-holiday', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Observance', 'slug' => 'observance', 'class_value' => 'observance', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Common Local Holiday', 'slug' => 'common-local-holiday', 'class_value' => 'common-local-holiday', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Muslim, Common Local Holiday', 'slug' => 'muslim-common-local-holiday', 'class_value' => 'muslim-common-local-holiday', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
-            ['name' => 'Season', 'slug' => 'season', 'class_value' => 'season', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+        	['name' => 'Sunday Workdays', 'slug' => 'sunday-workdays', 'class_value' => 'sunday-workdays', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Special Holiday Workdays', 'slug' => 'special-holiday-workdays', 'class_value' => 'special-holiday-workdays', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Legal Holiday Workdays', 'slug' => 'logal-holiday-workdays', 'class_value' => 'logal-holiday-workdays', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'Legal Sunday Workdays', 'slug' => 'legal-sunday-workdays', 'class_value' => 'legal-sunday-workdays', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['name' => 'No Work Legal Holiday', 'slug' => 'no-work-legal-holiday', 'class_value' => 'no-work-legal-holiday', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
         	['name' => 'Event', 'slug' => 'event', 'class_value' => 'event', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
         ];
 

@@ -571,7 +571,53 @@ body {
         padding: 0 8px;
         color: #262626; }
 
-.special-non-working-holiday {
+.legend-container .legend {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear; }
+  .legend-container .legend:hover {
+    color: white; }
+    .legend-container .legend:hover:after {
+      z-index: -1;
+      width: 100%;
+      left: 0; }
+  .legend-container .legend:after {
+    content: "";
+    position: absolute;
+    left: calc(50%);
+    top: 0;
+    display: block;
+    width: 0;
+    height: 100%;
+    transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    -ms-transition: all 0.15s linear; }
+  .legend-container .legend:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px; }
+  .legend-container .legend-sunday-work:after, .legend-container .legend-sunday-work:before {
+    background: #3D72F9; }
+  .legend-container .legend-sp-hol-work:after, .legend-container .legend-sp-hol-work:before {
+    background: #dd1533; }
+  .legend-container .legend-legal-hol-work:after, .legend-container .legend-legal-hol-work:before {
+    background: #f9c43d; }
+  .legend-container .legend-legal-sun-work:after, .legend-container .legend-legal-sun-work:before {
+    background: #95E06C; }
+  .legend-container .legend-no-work-legal-hol:after, .legend-container .legend-no-work-legal-hol:before {
+    background: #e2a507; }
+  .legend-container .legend-event:after, .legend-container .legend-event:before {
+    background: #ec3954; }
+
+.special-holiday-workdays {
   background: #dd1533;
   font-weight: bold;
   padding: 3px;
@@ -581,7 +627,7 @@ body {
   -o-box-shadow: 0px 0px 4px #ea2240;
   border: 0; }
 
-.regular-holiday {
+.sunday-workdays {
   background: #3D72F9;
   font-weight: bold;
   padding: 3px;
@@ -591,7 +637,7 @@ body {
   -o-box-shadow: 0px 0px 4px #2460f8;
   border: 0; }
 
-.observance {
+.logal-holiday-workdays {
   background: #f9c43d;
   font-weight: bold;
   padding: 3px;
@@ -601,7 +647,7 @@ body {
   -o-box-shadow: 0px 0px 4px #f8bc24;
   border: 0; }
 
-.common-local-holiday {
+.legal-sunday-workdays {
   background: #95E06C;
   font-weight: bold;
   padding: 3px;
@@ -611,17 +657,7 @@ body {
   -o-box-shadow: 0px 0px 4px #86dc57;
   border: 0; }
 
-.muslim-common-local-holiday {
-  background: #77d742;
-  font-weight: bold;
-  padding: 3px;
-  box-shadow: 0px 0px 4px #67d32d;
-  -webkit-box-shadow: 0px 0px 4px #67d32d;
-  -moz-box-shadow: 0px 0px 4px #67d32d;
-  -o-box-shadow: 0px 0px 4px #67d32d;
-  border: 0; }
-
-.season {
+.no-work-legal-holiday {
   background: #e2a507;
   font-weight: bold;
   padding: 3px;

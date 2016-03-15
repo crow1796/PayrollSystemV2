@@ -7,17 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\EmployeeRepository;
+use App\Repositories\Eloquent\DailyRecordRepository;
 use App\Http\Requests\EmployeeTransactionRequest;
 use App\Support\Excel\EmployeeDTRListImport;
 use App\Support\File\FileManager;
+use Validator;
+use App\Support\Payroll\PayrollTransaction;
 
 class PayrollTransactionController extends Controller
 {
 
     protected $employeeRepository;
+    protected $dtrRepository;
+    protected $payroll;
 
-    public function __construct(EmployeeRepository $employeeRepository){
+    public function __construct(EmployeeRepository $employeeRepository, 
+                                DailyRecordRepository $dtrRepository,
+                                PayrollTransaction $payroll){
         $this->employeeRepository = $employeeRepository;
+        $this->dtrRepository = $dtrRepository;
+        $this->payroll = $payroll;
     }
 
     public function index(){
@@ -29,16 +38,7 @@ class PayrollTransactionController extends Controller
     }
 
     public function confirmTransaction(Request $request){
-        $employees = \App\DailyRecord::where(function($query) use($request){
-            $query->where('record_date', '>=', $request->cutoff_start)
-                    ->where('record_date', '<=', $request->cutoff_end);
-        })->get()->groupBy('employee_id');
-
-        foreach($employees as $employeeDailyTimeRecords){
-            foreach($employeeDailyTimeRecords as $dailyTimeRecord){
-                echo $dailyTimeRecord->time_in . '<br>';
-            }
-        }
+        $this->payroll->transact($request);
     }
 
     public function createManual(){
@@ -77,19 +77,30 @@ class PayrollTransactionController extends Controller
     }
 
     public function storeManual(Request $request){
-        if(!$request->ajax()){
-            return redirect()->back()->withMessage('Unable to fetch data. Please try again.');
-        }
-        $validationRules = [
-            'time_in' => 'required|numeric|min:0|max:2400',
-            'time_out' => 'required|numeric|min:0|max:2400'
-        ];
-        $validation = \Validator::make($request->all(), $validationRules);
+        $this->ajaxCheck($request);
+        
+        $validation = $this->manualDTRValidation($request->all());
 
         if($validation->fails()){
             return $validation->errors()->toArray() + ['errors' => true];
         }
-        
+
+        if(!$this->dtrRepository->create($request->all())){
+            return  ['error' => ['Saving Error!'], 'errors' => true];
+        }
+
         return 'Saved!';
+    }
+
+    private function manualDTRValidation($data){
+        $validationRules = [
+            'employee_id' => 'required|exists:employees,id',
+            'time_in' => 'required|numeric|min:0|max:2400',
+            'time_out' => 'required|numeric|min:0|max:2400',
+            'record_date' => 'required|before:' . \Carbon\Carbon::now()->addDay(1)->format('m/d/Y'),
+        ];
+        $validation = Validator::make($data, $validationRules);
+
+        return $validation;
     }
 }

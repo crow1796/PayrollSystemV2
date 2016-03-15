@@ -480,10 +480,13 @@
                 e.preventDefault();
                 if(e.handled !== true){
                     e.handled = true;
+                    $('.modal-message-container').stop().hide('fast');
                     var baseUrl = window.location.origin;
                     var requestData = {
+                        'employee_id': $('#transact-employee-id').text(),
                         'time_in': $(this).children().find('[name="time_in"]').val(),
                         'time_out': $(this).children().find('[name="time_out"]').val(),
+                        'record_date': $(this).children().find('[name="for_date"]').val(),
                         '_token': $(this).children('[name="_token"]').val()
                     };
                     $.ajax({
@@ -529,12 +532,9 @@
                 .removeClass()
                 .addClass('modal-message-container')
                 .addClass(subclass)
-                .slideDown('fast', function(e){
-                    var container = $(this);
-                    window.setTimeout(function(){
-                        container.hide('fast');
-                    }, 3000);
-                });
+                .show('fast')
+                .delay(3000)
+                .hide('fast');
         }
     });
 }(window, document, window.jQuery));

@@ -659,8 +659,78 @@ body{
         }
     }
 }
+.legend-container{
+    .legend{
+        cursor: pointer;
+        position: relative;
+        @include transition(all, .2s, linear);
+        &:hover{
+            color: white;
+            &:after{
+                z-index: -1;
+                width: 100%;
+                left: 0;
+            }    
+        }
 
-.special-non-working-holiday{
+        &:after{
+            content: "";
+            position: absolute;
+            left: calc(50%);
+            top: 0;
+            display: block;
+            width: 0;
+            height: 100%;
+            @include transition(all, .15s, linear);
+        }
+
+        &:before{
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 10px;
+        }
+
+        &-sunday-work{
+            &:after, &:before{
+                background: $primary-color;
+            }
+        }
+
+        &-sp-hol-work{
+            &:after, &:before{
+                background: $danger-color;
+            }
+        }
+
+        &-legal-hol-work{
+            &:after, &:before{
+                background: $warning-color;
+            }
+        }
+
+        &-legal-sun-work{
+            &:after, &:before{
+                background: $success-color;
+            }
+        }
+
+        &-no-work-legal-hol{
+            &:after, &:before{
+                background: darken($warning-color, 15%);
+            }
+        }
+
+        &-event{
+            &:after, &:before{
+                background: lighten($danger-color, 10%);
+            }
+        }
+    }
+}
+
+.special-holiday-workdays{
     background: $danger-color;
     font-weight: bold;
     padding: 3px;
@@ -668,7 +738,7 @@ body{
     border: 0;
 }
 
-.regular-holiday{
+.sunday-workdays{
     background: $primary-color;
     font-weight: bold;
     padding: 3px;
@@ -676,7 +746,7 @@ body{
     border: 0;
 }
 
-.observance{
+.logal-holiday-workdays{
     background: $warning-color;
     font-weight: bold;
     padding: 3px;
@@ -684,7 +754,7 @@ body{
     border: 0;
 }
 
-.common-local-holiday{
+.legal-sunday-workdays{
     background: $success-color;
     font-weight: bold;
     padding: 3px;
@@ -692,15 +762,7 @@ body{
     border: 0;
 }
 
-.muslim-common-local-holiday{
-    background: darken($success-color, 10%);
-    font-weight: bold;
-    padding: 3px;
-    @include box-shadow(0px, 0px, 4px, darken(darken($success-color, 10%), 5%));
-    border: 0;
-}
-
-.season{
+.no-work-legal-holiday{
     background: darken($warning-color, 15%);
     font-weight: bold;
     padding: 3px;

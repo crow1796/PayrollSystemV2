@@ -46,6 +46,8 @@ class CreateAdditionalInformationTable extends Migration
                     ->nullable();
             $table->string('father_name')
                     ->nullable();
+            $table->text('display_photo')
+                    ->nullable();
             $table->timestamps();
         });
     }

@@ -94,4 +94,8 @@ class Employee extends Model implements SluggableInterface
     public function logs(){
         return $this->hasManyThrough('\App\Log', 'App\User', 'id', 'user_id');
     }
+
+    public function rates(){
+        return $this->morphMany('\App\Rate', 'rateable');
+    }
 }

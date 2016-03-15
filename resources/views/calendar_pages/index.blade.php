@@ -20,6 +20,15 @@
 					
 				</div>
 			</div>
+			<div class="legend-container">
+				<h4>Legend</h4>
+				<div class=" legend legend-sunday-work">Sunday Workdays</div>
+				<div class=" legend legend-sp-hol-work">Special Holiday Workdays</div>
+				<div class=" legend legend-legal-hol-work">Legal Holiday Workdays</div>
+				<div class=" legend legend-legal-sun-work">Legal Sunday Workdays</div>
+				<div class=" legend legend-no-work-legal-hol">No Work Legal Holiday</div>
+				<div class=" legend legend-event">Event</div>
+			</div>
 		</div>
 		<!-- Calendar -->
 		<div class="col-sm-4" id="sidebar-container">

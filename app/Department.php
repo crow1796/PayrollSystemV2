@@ -26,4 +26,8 @@ class Department extends Model implements SluggableInterface
     public function employees(){
     	return $this->hasMany('\App\Employee', 'id');
     }
+
+    public function rates(){
+        return $this->morphMany('\App\Rate', 'rateable');
+    }
 }
