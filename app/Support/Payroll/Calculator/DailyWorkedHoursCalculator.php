@@ -18,6 +18,8 @@ class DailyWorkedHoursCalculator {
 		$timeIn = $dailyRecord->time_in;
 		$timeOut = $dailyRecord->time_out;
 
+		$shift = $this->determineShift($dailyRecord);
+
 		$this->calculatedHours = ($timeIn > $timeOut) ? (($timeOut + 2400) - $timeIn) : ($timeOut - $timeIn);
 		$this->regularHours = $this->calculatedHours;
 
@@ -30,7 +32,8 @@ class DailyWorkedHoursCalculator {
 						'undertimeHours' => $this->undertimeHours, 
 						'overtimeHours' => $this->overtimeHours, 
 						'totalHours' => $this->totalHours,
-						'record_date' => $dailyRecord->record_date]
+						'record_date' => $dailyRecord->record_date,
+						'shift' => $shift]
 				));
 	}
 
@@ -75,5 +78,12 @@ class DailyWorkedHoursCalculator {
 		$this->undertimeHours = 0;
 		$this->overtimeHours = 0;
 		$this->totalHours = 0;
+	}
+
+	protected function determineShift($dailyRecord){
+		if($dailyRecord->time_in >= 600 && $dailyRecord->time_in < 1700){
+			return 1;
+		}
+		return 2;
 	}
 }

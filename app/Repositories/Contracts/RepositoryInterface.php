@@ -15,6 +15,7 @@ interface RepositoryInterface {
     public function paginate($itemsPerPage = 15, $columns = array('*'));
     public function findBySlug($slug);
     public function findById($id);
+    public function findManyByIds($ids = []);
     public function orderByAsc($col);
     public function orderByDesc($col);
     public function limit($limit = 0);

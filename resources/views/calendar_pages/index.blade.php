@@ -22,7 +22,6 @@
 			</div>
 			<div class="legend-container">
 				<h4>Legend</h4>
-				<div class=" legend legend-sunday-work">Sunday Workdays</div>
 				<div class=" legend legend-sp-hol-work">Special Holiday Workdays</div>
 				<div class=" legend legend-legal-hol-work">Legal Holiday Workdays</div>
 				<div class=" legend legend-legal-sun-work">Legal Sunday Workdays</div>

@@ -18,19 +18,19 @@ class CreateRatesTable extends Migration
             $table->string('rateable_type');
 
             $table->float('regular');
-            $table->float('ot_regular');
-            $table->float('nd_regular');
-            $table->float('nd_ot_regular');
+            $table->float('regular_ot');
+            $table->float('regular_nd');
+            $table->float('regular_nd_ot');
 
             $table->float('sun');
             $table->float('sun_ot');
             $table->float('sun_nd');
             $table->float('sun_nd_ot');
 
-            $table->float('sp_holiday');
-            $table->float('sp_holiday_ot');
-            $table->float('sp_holiday_nd');
-            $table->float('sp_holiday_nd_ot');
+            $table->float('spl_holiday');
+            $table->float('spl_holiday_ot');
+            $table->float('spl_holiday_nd');
+            $table->float('spl_holiday_nd_ot');
 
             $table->float('legal_holiday');
             $table->float('legal_holiday_ot');

@@ -25,7 +25,7 @@ class CalendarController extends Controller
         $events = $this->eventRepository
                         ->all();
         $holidays = $this->eventRepository
-                        ->whereThenOrderByAsc('event_type_id', '<', '7', 'start');
+                        ->whereThenOrderByAsc('event_type_id', '<', '6', 'start');
         $upcomingEvents = $this->eventRepository
                                 ->whereThenOrderByAsc('start', '>', \Carbon\Carbon::now(), 'start');
         return view('calendar_pages.index', compact(['holidays', 'upcomingEvents', 'events']));

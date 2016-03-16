@@ -730,7 +730,7 @@ body{
     }
 }
 
-.special-holiday-workdays{
+.special-holiday-workday{
     background: $danger-color;
     font-weight: bold;
     padding: 3px;
@@ -738,7 +738,7 @@ body{
     border: 0;
 }
 
-.sunday-workdays{
+.sunday-workday{
     background: $primary-color;
     font-weight: bold;
     padding: 3px;
@@ -746,7 +746,7 @@ body{
     border: 0;
 }
 
-.logal-holiday-workdays{
+.logal-holiday-workday{
     background: $warning-color;
     font-weight: bold;
     padding: 3px;
@@ -754,7 +754,7 @@ body{
     border: 0;
 }
 
-.legal-sunday-workdays{
+.legal-sunday-workday{
     background: $success-color;
     font-weight: bold;
     padding: 3px;

@@ -183,6 +183,13 @@ abstract class Repository implements RepositoryInterface{
                     ->findOrFail($id);
     }
 
+    public function findManyByIds($ids = []){
+        if(!is_array($ids)){
+            return $this->findById(($ids));
+        }
+
+        return $this->model->whereIn('id', $ids)->get();
+    }
     
     public function limit($limit = 0){
         return $this->model

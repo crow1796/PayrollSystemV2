@@ -3,6 +3,7 @@
 namespace App\Support\Payroll;
 use App\Support\Payroll\Calculator\DailyWorkedHoursCalculator;
 use App\Support\Payroll\Stack\DailyWorkedHoursStack;
+use App\Support\Payroll\Stack\SalaryStack;
 use App\Support\Payroll\Calculator\SalaryCalculator;
 
 class PayrollTransaction {
@@ -10,6 +11,7 @@ class PayrollTransaction {
 	protected $dailyWorkedHoursCalculator;
 	protected $dailyWorkedHoursStack;
 	protected $salaryCalculator;
+	protected $salaryStack;
 
 	public function __construct(DailyWorkedHoursCalculator $dailyWorkedHoursCalculator, 
 								DailyWorkedHoursStack $dailyWorkedHoursStack,
@@ -21,10 +23,14 @@ class PayrollTransaction {
 
 	public function transact($data){
 		$employees = \App\DailyRecord::where(function($query) use($data){
-		    $query->where('record_date', '>=', $data->cutoff_start)
-		            ->where('record_date', '<=', $data->cutoff_end);
+		    $query->where('record_date', '>=', $data['cutoff_start'])
+		            ->where('record_date', '<=', $data['cutoff_end']);
 		})->get()->groupBy('employee_id');
 		$this->mainIterate($employees);
+		if(strtolower($data['cutoff']) == 'second'){
+			$this->salaryCalculator->deduct();
+		}
+		return $this->salaryStack;
 	}
 
 	/**
@@ -39,6 +45,7 @@ class PayrollTransaction {
 		array_walk($employee, function($employeeDailyRecordsCollection){
 			array_walk($employeeDailyRecordsCollection, [$this, 'transformToSalary']);
 		});
+		$this->salaryStack = $this->salaryCalculator->calculate($this->dailyWorkedHoursStack); #returns SalaryStack
 	}
 
 	/**
@@ -52,7 +59,5 @@ class PayrollTransaction {
 			$dailyWorkedHours = $this->dailyWorkedHoursCalculator->calculate($employeeDailyRecord);
 			$this->dailyWorkedHoursStack->add($employeeDailyRecord->employee->id, $dailyWorkedHours);
 		}
-		$salary = $this->salaryCalculator->calculate($this->dailyWorkedHoursStack); #returns Salary instance
-		// $this->salaryStack->add($salary);
 	}
 }

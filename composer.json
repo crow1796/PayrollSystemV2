@@ -12,7 +12,8 @@
         "cviebrock/eloquent-sluggable": "^3.1",
         "laravelcollective/html": "^5.2",
         "doctrine/dbal": "^2.5",
-        "maatwebsite/excel": "^2.1"
+        "maatwebsite/excel": "^2.1",
+        "zizaco/entrust": "^1.7"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

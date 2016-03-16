@@ -38,7 +38,8 @@ class PayrollTransactionController extends Controller
     }
 
     public function confirmTransaction(Request $request){
-        $this->payroll->transact($request);
+        $salaryStack = $this->payroll->transact($request->all());
+        $employees = $salaryStack->employees();
     }
 
     public function createManual(){

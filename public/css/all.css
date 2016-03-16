@@ -617,7 +617,7 @@ body {
   .legend-container .legend-event:after, .legend-container .legend-event:before {
     background: #ec3954; }
 
-.special-holiday-workdays {
+.special-holiday-workday {
   background: #dd1533;
   font-weight: bold;
   padding: 3px;
@@ -627,7 +627,7 @@ body {
   -o-box-shadow: 0px 0px 4px #ea2240;
   border: 0; }
 
-.sunday-workdays {
+.sunday-workday {
   background: #3D72F9;
   font-weight: bold;
   padding: 3px;
@@ -637,7 +637,7 @@ body {
   -o-box-shadow: 0px 0px 4px #2460f8;
   border: 0; }
 
-.logal-holiday-workdays {
+.logal-holiday-workday {
   background: #f9c43d;
   font-weight: bold;
   padding: 3px;
@@ -647,7 +647,7 @@ body {
   -o-box-shadow: 0px 0px 4px #f8bc24;
   border: 0; }
 
-.legal-sunday-workdays {
+.legal-sunday-workday {
   background: #95E06C;
   font-weight: bold;
   padding: 3px;

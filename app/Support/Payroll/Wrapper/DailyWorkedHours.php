@@ -32,4 +32,8 @@ class DailyWorkedHours {
 	public function recordDate(){
 		return $this->workedHours['record_date'];
 	}
+
+	public function shift(){
+		return $this->workedHours['shift'];
+	}
 }
