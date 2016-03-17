@@ -20,12 +20,12 @@
         <div class="col-sm-8">
             <p id="period">
                 <b>Period:</b> 
-                <span class="period-start"><b>{{ $transaction->cutoff_start->format('F d, Y') }}</b></span>
+                <b><span id="period-start">{{ $transaction->cutoff_start->format('F d, Y') }}</span></b>
                  - 
-                <span class="period-end"><b>{{ $transaction->cutoff_end->format('F d, Y') }}</b></span>
+                <b><span id="period-end">{{ $transaction->cutoff_end->format('F d, Y') }}</span></b>
                  - 
                 <span>
-                    <b>{{ $transaction->cutoff }} Cut-off</b>
+                    <b><span id="cutoff">{{ $transaction->cutoff }}</span> Cut-off</b>
                 </span>
             </p>
 
@@ -56,8 +56,8 @@
                                     </a>
                                 </td>
                                 <td>{{ $salary->employee()->fullname }}</td>
-                                <td>&#8369 {{ $salary->grossPay() }}</td>
-                                <td>&#8369 {{ $salary->netPay() }}</td>
+                                <td>&#8369; {{ $salary->grossPay() }}</td>
+                                <td>&#8369; {{ $salary->netPay() }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -70,12 +70,12 @@
                 <div class="panel-heading">
                     Payslip
                 </div>
-                <div class="panel-body employee-payslip">
+                <div class="panel-body panel-body-active employee-payslip">
                     <div class="pre-payslip">
-                        <p>Members Name: <span id="members-name">Test Test Test</span></p>
-                        <p>Service Location: <span id="service-location">DMPI-CDO</span></p>
-                        <p>Project: <span id="project">PSA 2</span></p>
-                        <p>Minimum Wage: <span id="minimum-wage">318.00</span> DAILY</p>
+                        <p>Members Name: <span id="members-name"> </span></p>
+                        <p>Service Location: <span id="service-location"> </span></p>
+                        <p>Project: <span id="project"> </span></p>
+                        <p>Minimum Wage: <span id="minimum-wage">0.00</span> DAILY</p>
                         <p class="text-center"><b>INCOME</b></p>
                         <table class="table">
                             <thead>
@@ -89,13 +89,13 @@
                                 {{-- Regular --}}
                                 <tr>
                                     <td><b>Regular Workdays</b></td>
-                                    <td><span id="regular-workdays">3.0</span></td>
+                                    <td><span id="regular-workdays">0.0</span></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Regular Hrs</td>
-                                    <td><span id="regular-hours">24.0</span></td>
-                                    <td><span id="regular-pay">954.00</span></td>
+                                    <td><span id="regular-hours">0.0</span></td>
+                                    <td><span id="regular-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>OT Hrs</td>
@@ -116,13 +116,13 @@
                                 {{-- Sunday --}}
                                 <tr>
                                     <td><b>Sunday Workdays</b></td>
-                                    <td><span id="sun-workdays">3.0</span></td>
+                                    <td><span id="sun-workdays">0.0</span></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Sunday Hrs</td>
-                                    <td><span id="sun-hours">24.0</span></td>
-                                    <td><span id="sun-pay">954.00</span></td>
+                                    <td><span id="sun-hours">0.0</span></td>
+                                    <td><span id="sun-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>Sunday OT Hrs</td>
@@ -143,18 +143,18 @@
                                 {{-- Special Holiday --}}
                                 <tr>
                                     <td><b>SPL Holiday Workdays</b></td>
-                                    <td><span id="spl-holiday-workdays">1.0</span></td>
+                                    <td><span id="spl-holiday-workdays">0.0</span></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>SPL Holiday Hrs</td>
-                                    <td><span id="spl-holiday-hours">8.0</span></td>
-                                    <td><span id="spl-holiday-pay">431.44</span></td>
+                                    <td><span id="spl-holiday-hours">0.0</span></td>
+                                    <td><span id="spl-holiday-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>SPL Holiday OT Hrs</td>
-                                    <td><span id="spl-holiday-ot-hours">2.0</span></td>
-                                    <td><span id="spl-holiday-ot-pay">134.36</span></td>
+                                    <td><span id="spl-holiday-ot-hours">0.0</span></td>
+                                    <td><span id="spl-holiday-ot-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>SPL Holiday ND Hrs</td>
@@ -170,18 +170,18 @@
                                 {{-- Legal Holiday --}}
                                 <tr>
                                     <td><b>Legal Holiday Workdays</b></td>
-                                    <td><span id="legal-holiday-workdays">1.0</span></td>
+                                    <td><span id="legal-holiday-workdays">0.0</span></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Legal Holiday Hrs</td>
-                                    <td><span id="legal-holiday-hours">8.0</span></td>
-                                    <td><span id="legal-holiday-pay">431.44</span></td>
+                                    <td><span id="legal-holiday-hours">0.0</span></td>
+                                    <td><span id="legal-holiday-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>Legal Holiday OT Hrs</td>
-                                    <td><span id="legal-holiday-ot-hours">2.0</span></td>
-                                    <td><span id="legal-holiday-ot-pay">134.36</span></td>
+                                    <td><span id="legal-holiday-ot-hours">0.0</span></td>
+                                    <td><span id="legal-holiday-ot-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>Legal Holiday ND Hrs</td>
@@ -197,18 +197,18 @@
                                 {{-- Legal Holiday Sunday --}}
                                 <tr>
                                     <td><b>Legal Sunday Workdays</b></td>
-                                    <td><span id="legal-sunday-workdays">1.0</span></td>
+                                    <td><span id="legal-sunday-workdays">0.0</span></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Legal Sunday Hrs</td>
-                                    <td><span id="legal-sunday-hours">8.0</span></td>
-                                    <td><span id="legal-sunday-pay">431.44</span></td>
+                                    <td><span id="legal-sunday-hours">0.0</span></td>
+                                    <td><span id="legal-sunday-pay">0.0</span></td>
                                 </tr>
                                 <tr>
                                     <td>Legal Sunday OT Hrs</td>
-                                    <td><span id="legal-sunday-ot-hours">2.0</span></td>
-                                    <td><span id="legal-sunday-ot-pay">134.36</span></td>
+                                    <td><span id="legal-sunday-ot-hours">0.0</span></td>
+                                    <td><span id="legal-sunday-ot-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td>Legal Sunday ND Hrs</td>
@@ -229,8 +229,8 @@
                             <tbody>
                                 <tr>
                                     <td>No Work Legal Holiday Pay</td>
-                                    <td><span id="no-work-legal">1</span></td>
-                                    <td><span id="no-work-legal-pay">318.00</span></td>
+                                    <td><span id="no-work-legal">0</span></td>
+                                    <td><span id="no-work-legal-pay">0.00</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -239,11 +239,11 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td colspan="2">Investment 2(Production Paraphernalia)</td>
+                                    <td colspan="2">Investment 1(Production Paraphernalia)</td>
                                     <td><span id="investment-1">0.00</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Investment 3(House Rent Bills)</td>
+                                    <td colspan="2">Investment 2(House Rent Bills)</td>
                                     <td><span id="investment-2">0.00</span></td>
                                 </tr>
                                 <tr>
@@ -263,8 +263,12 @@
                                     <td><span id="investment-6">0.00</span></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Investment 4(BDO ATM Card)</td>
+                                    <td colspan="2">Investment 7(BDO ATM Card)</td>
                                     <td><span id="investment-7">0.00</span></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-right"><b>TOTAL INVESTMENTS</b></td>
+                                    <td><span id="total-investments">0.0</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -316,11 +320,11 @@
                             <tbody>
                                 <tr>
                                     <td colspan="2" class="text-right"><b>GROSS PAY</b></td>
-                                    <td><span id="gross-pay">1799.94</span></td>
+                                    <td>&#8369; <span id="gross-pay">0.00</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="text-right"><b>NET PAY</b></td>
-                                    <td><span id="gross-pay">1599.94</span></td>
+                                    <td>&#8369; <span id="net-pay">0.00</span></td>
                                 </tr>
                             </tbody>
                         </table>

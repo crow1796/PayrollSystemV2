@@ -207,7 +207,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
-
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];

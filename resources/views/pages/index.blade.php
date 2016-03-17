@@ -45,7 +45,7 @@
 <!-- /.row -->
 
 <div class="row">
-    <div class="col-md-4 col-xs-12 col-sm-offset-2">
+    {{-- <div class="col-md-4 col-xs-12 col-sm-offset-2">
         <h3 class="text-center page-header">
             Reports
             <a href="{{ url('/reports/all') }}" class="btn btn-xs btn-primary pull-right">
@@ -54,9 +54,9 @@
         </h3>
         <img src="images/leave.png" alt="" class="center-block img-responsive">
         <p class="text-center">Allows user to view and print payroll. Withholding TAX, SSS, PhilHealth etc. reports of all the employee.</p>
-    </div>
+    </div> --}}
     <!-- /.col -->
-    <div class="col-md-4 col-xs-12">
+    <div class="col-md-4 col-md-offset-4 col-xs-12">
         <h3 class="text-center page-header">
             Control Access
             <a href="{{ url('/control-access') }}" class="btn btn-xs btn-primary pull-right">

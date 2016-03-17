@@ -215,7 +215,7 @@ class EmployeeRegistrar implements Registrar{
 		$originalName = trim(trim($file->getClientOriginalName(), '.'.$fileExtension));
 		$filename = \Carbon\Carbon::now()->format('mdY') . '_' . md5($file->getFilename());
 		$filename = $filename . '.' . $fileExtension;
-		$file->move(base_path('uploads/images/' . $filename));
+		\File::move($file, public_path('uploads/images/' . $filename));
 		$additionalInformation->display_photo = 'uploads/images/' . $filename;
 
 		$additionalInformation->employee()->associate($this->model);

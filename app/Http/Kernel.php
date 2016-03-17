@@ -54,5 +54,8 @@ class Kernel extends HttpKernel
         'manager' => \App\Http\Middleware\Manager::class,
         'leader' => \App\Http\Middleware\Leader::class,
         'staff' => \App\Http\Middleware\Staff::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ];
 }

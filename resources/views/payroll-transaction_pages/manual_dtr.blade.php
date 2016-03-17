@@ -8,9 +8,9 @@
     <a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
     <h2 class="page-header">
         Create Employees DTR <small>Manual</small>
-        <a href="{{ url('payroll/dtr/import') }}" class="btn btn-xs btn-danger">
+        {{-- <a href="{{ url('payroll/dtr/import') }}" class="btn btn-xs btn-danger">
             Import Excel/CSV
-        </a>
+        </a> --}}
     </h2>
 
     <div class="row">

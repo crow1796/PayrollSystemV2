@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
+	<a href="{{ url('/employees') }}" class="btn btn-link btn-xs">&laquo; Back</a>
 	<div class="row employee-information-header-container">
 		<div class="col-sm-offset-3 col-sm-9">
 			<h2>

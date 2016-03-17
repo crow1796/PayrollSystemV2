@@ -40,10 +40,10 @@ Route::group(['middleware' => ['web']], function () {
                 Route::get('/manual', 'PayrollTransactionController@createManual');
 
                 // /payroll/dtr/import/*
-                Route::get('/import', 'PayrollTransactionController@createImport');
-                Route::group(['prefix' => 'import'], function(){
-                    Route::post('/uploading', 'PayrollTransactionController@storeImport');
-                });
+                // Route::get('/import', 'PayrollTransactionController@createImport');
+                // Route::group(['prefix' => 'import'], function(){
+                //     Route::post('/uploading', 'PayrollTransactionController@storeImport');
+                // });
             });
         });
         Route::resource('/payroll', 'PayrollTransactionController');
@@ -63,6 +63,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/events', 'CalendarController@events');
             Route::get('/match-employees', 'EmployeeManagementController@matchEmployees');
             Route::post('/add-employee-dtr', 'PayrollTransactionController@storeManual');
+            Route::get('/get-employee-payslip', 'PayrollTransactionController@employeePayslip');
         });
     });
 

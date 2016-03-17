@@ -417,7 +417,139 @@
         $('.display-employee-payslip-button')
             .on('click', function(e){
                 e.preventDefault();
-                
+                $('.employee-payslip')
+                    .removeClass('panel-body-active')
+                    .addClass('panel-body-active');
+                var employeeId = $(this).data('employee_id');
+                var cutoff_start = $('#period-start').text();
+                var cutoff_end = $('#period-end').text();
+                var cutoff = $('#cutoff').text();
+                var data = {
+                    'employeeId' : employeeId,
+                    'cutoff_start': cutoff_start,
+                    'cutoff_end': cutoff_end,
+                    'cutoff': cutoff.toLowerCase()
+                };
+                $.ajax({
+                    url: window.location.origin + '/api/get-employee-payslip',
+                    'data': data,
+                    'type': 'GET',
+                    beforeSend: function(){
+
+                    },
+                    success: function(response){
+                        var payslipInformation = $.parseJSON(response);
+                        $('.employee-payslip')
+                            .removeClass('panel-body-active')
+                            .addClass('panel-body-active');
+
+                        $('.pre-payslip').hide('fast', function(){
+                            $('#members-name').text(payslipInformation.fullname);
+                            $('#service-location').text(payslipInformation.service_location);
+                            $('#project').text(payslipInformation.project);
+                            $('#minimum-wage').text(payslipInformation.minimum_wage);
+
+                            $('#regular-workdays').text(payslipInformation.days.regular);
+                            $('#regular-hours').text(payslipInformation.hours.regular);
+                            $('#regular-pay').text(payslipInformation.incomes.regular);
+
+                            $('#ot-hours').text(payslipInformation.hours.regular_ot);
+                            $('#ot-pay').text(payslipInformation.incomes.regular_ot);
+
+                            $('#nd-hours').text(payslipInformation.hours.regular_nd);
+                            $('#nd-pay').text(payslipInformation.incomes.regular_nd);
+
+                            $('#nd-ot-hours').text(payslipInformation.hours.regular_nd_ot);
+                            $('#nd-ot-pay').text(payslipInformation.incomes.regular_nd_ot);
+                            // .regular
+                            
+                            $('#sun-workdays').text(payslipInformation.days.sun);
+                            $('#sun-hours').text(payslipInformation.hours.sun);
+                            $('#sun-pay').text(payslipInformation.incomes.sun);
+
+                            $('#sun-ot-hours').text(payslipInformation.hours.sun_ot);
+                            $('#sun-ot-pay').text(payslipInformation.incomes.sun_ot);
+
+                            $('#sun-nd-hours').text(payslipInformation.hours.sun_nd);
+                            $('#sun-nd-pay').text(payslipInformation.incomes.sun_nd);
+
+                            $('#sun-nd-ot-hours').text(payslipInformation.hours.sun_nd_ot);
+                            $('#sun-nd-ot-pay').text(payslipInformation.incomes.sun_nd_ot);
+                            // .sun
+                            
+                            $('#spl-holiday-workdays').text(payslipInformation.days.spl_holiday);
+                            $('#spl-holiday-hours').text(payslipInformation.hours.spl_holiday);
+                            $('#spl-holiday-pay').text(payslipInformation.incomes.spl_holiday);
+
+                            $('#spl-holiday-ot-hours').text(payslipInformation.hours.spl_holiday_ot);
+                            $('#spl-holiday-ot-pay').text(payslipInformation.incomes.spl_holiday_ot);
+
+                            $('#spl-holiday-nd-hours').text(payslipInformation.hours.spl_holiday_nd);
+                            $('#spl-holiday-nd-pay').text(payslipInformation.incomes.spl_holiday_nd);
+
+                            $('#spl-holiday-nd-ot-hours').text(payslipInformation.hours.spl_holiday_nd_ot);
+                            $('#spl-holiday-nd-ot-pay').text(payslipInformation.incomes.spl_holiday_nd_ot);
+                            // .spl-holiday
+                            
+                            $('#legal-holiday-workdays').text(payslipInformation.days.legal_holiday);
+                            $('#legal-holiday-hours').text(payslipInformation.hours.legal_holiday);
+                            $('#legal-holiday-pay').text(payslipInformation.incomes.legal_holiday);
+
+                            $('#legal-holiday-ot-hours').text(payslipInformation.hours.legal_holiday_ot);
+                            $('#legal-holiday-ot-pay').text(payslipInformation.incomes.legal_holiday_ot);
+
+                            $('#legal-holiday-nd-hours').text(payslipInformation.hours.legal_holiday_nd);
+                            $('#legal-holiday-nd-pay').text(payslipInformation.incomes.legal_holiday_nd);
+
+                            $('#legal-holiday-nd-ot-hours').text(payslipInformation.hours.legal_holiday_nd_ot);
+                            $('#legal-holiday-nd-ot-pay').text(payslipInformation.incomes.legal_holiday_nd_ot);
+                            // .legal
+                            
+                            $('#legal-sunday-workdays').text(payslipInformation.days.legal_sun);
+                            $('#legal-sunday-hours').text(payslipInformation.hours.legal_sun);
+                            $('#legal-sunday-pay').text(payslipInformation.incomes.legal_sun);
+
+                            $('#legal-sunday-ot-hours').text(payslipInformation.hours.legal_sun_ot);
+                            $('#legal-sunday-ot-pay').text(payslipInformation.incomes.legal_sun_ot);
+
+                            $('#legal-sunday-nd-hours').text(payslipInformation.hours.legal_sun_nd);
+                            $('#legal-sunday-nd-pay').text(payslipInformation.incomes.legal_sun_nd);
+
+                            $('#legal-sunday-nd-ot-hours').text(payslipInformation.hours.legal_sun_nd_ot);
+                            $('#legal-sunday-nd-ot-pay').text(payslipInformation.incomes.legal_sun_nd_ot);
+                            // .legal-sun
+                            
+                            $('#no-work-legal').text(payslipInformation.days.no_work_legal_holiday);
+                            // .no-work-legal
+                            
+                            $('#investment-1').text(payslipInformation.investments.investment_1);
+                            $('#investment-2').text(payslipInformation.investments.investment_2);
+                            $('#investment-3').text(payslipInformation.investments.investment_3);
+                            $('#investment-4').text(payslipInformation.investments.investment_4);
+                            $('#investment-5').text(payslipInformation.investments.investment_5);
+                            $('#investment-6').text(payslipInformation.investments.investment_6);
+                            $('#investment-7').text(payslipInformation.investments.investment_7);
+                            $('#total-investments').text(payslipInformation.investments.total);
+
+                            $('#expenses-1').text(payslipInformation.expenses.coop_share_capital);
+                            $('#expenses-2').text(payslipInformation.expenses.contributions.sss);
+                            $('#expenses-3').text(payslipInformation.expenses.contributions.philhealth);
+                            $('#expenses-4').text(payslipInformation.expenses.contributions.pagibig);
+                            $('#expenses-5').text(payslipInformation.expenses.loans.sss);
+                            $('#expenses-6').text(payslipInformation.expenses.loans.pagibig);
+                            $('#expenses-7').text(payslipInformation.expenses.loans.emergency);
+                            $('#total-expenses').text(payslipInformation.expenses.total);
+
+                            $('#gross-pay').text(payslipInformation.gross_pay);
+                            $('#net-pay').text(payslipInformation.net_pay);
+                            $('.pre-payslip').show('fast');
+                        });
+
+                    },
+                    complete: function(response){
+
+                    }
+                });
             });
 
         $('.start-payroll-transact-button')
