@@ -5,12 +5,13 @@
 @endsection
 
 @section('content')
+	<a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
 	<h2 class="page-header">
 	    Create Transaction
 	</h2>
 
 	<div class="row">
-		{!! Form::open(['method' => 'POST', 'url' => url('payroll/create/confirm')]) !!}
+		{!! Form::open(['method' => 'POST', 'url' => url('payroll/')]) !!}
 			<div class="col-sm-8">
 				<div class="panel panel-default">
 					<div class="panel-heading">

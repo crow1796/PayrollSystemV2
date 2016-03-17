@@ -6,6 +6,7 @@
 
 @section('content')
 	@include('errors.partials._requesterrors')
+	<a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
     <h2 class="page-header">Edit Holiday/Event</h2>
 	<div class="row">
 		{!! Form::model($event, ['method' => 'PUT', 'url' => url('/calendar', $event->id)]) !!}

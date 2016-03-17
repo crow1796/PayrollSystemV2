@@ -11,7 +11,7 @@
         <p class="text-center">
             {{ Auth::user()->permission->name }}
         </p>
-        <img src="{{ url('images/default_user_thumbnail.png') }}" alt="" class="center-block img-thumbnail img-responsive">
+        <img src="{{ !$employee->additionalInformation->display_photo ? url('images/default_user_thumbnail.png') : url($employee->additionalInformation->display_photo) }}" alt="" class="center-block img-thumbnail img-responsive">
         <ul class="nav nav-pills nav-stacked">
             <li role="presentation" class="text-center">
                 <a href="#" class="sidebar-submenu-toggle">{{ Auth::user()->fullname }} <span class="fa fa-caret-down"></span></a>

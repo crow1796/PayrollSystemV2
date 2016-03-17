@@ -23,18 +23,50 @@
                                 ID
                             </th>
                             <th>
-                                Date
+                                Cut-off Start
                             </th>
                             <th>
-                                By
+                                Cut-off End
+                            </th>
+                            <th>
+                                Cut-off
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($transactions as $transaction)
+                            <tr>
+                                <td>
+                                    <span class="id-container">{{ $transaction->id }}</span>
+                                    <div class="bmpc-table-row-buttons-container">
+                                        <ul>
+                                            <li>
+                                                <a href="{{ url('payroll/' . $transaction->id) }}">
+                                                    <span class="fa fa-user"></span> View
+                                                </a>
+                                            </li> |
+                                            <li>
+                                                <a href="{{ url('payroll/' . $transaction->id) }}/edit">
+                                                    <span class="fa fa-edit"></span> Edit
+                                                </a>
+                                            </li> |
+                                            <li>
+                                                <a type="submit" data-toggle="modal" class="btn-link btn-md delete-transaction-confirmation-modal-button" href="#delete-confirmation-modal">
+                                                    <span class="fa fa-trash"></span> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>{{ $transaction->cutoff_start->format('F d, Y') }}</td>
+                                <td>{{ $transaction->cutoff_end->format('F d, Y') }}</td>
+                                <td>{{ $transaction->cutoff }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
+    @include('partials._confirm_delete_modal', ['url' => '#'])
 @endsection

@@ -6,6 +6,7 @@
 
 @section('content')
     @include('errors.partials._requesterrors')
+    
     <h2 class="page-header">
         All Employees
         <a href="{{ url('/employees/create') }}" class="btn btn-xs btn-danger">

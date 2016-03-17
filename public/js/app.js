@@ -132,6 +132,12 @@
                 modifyDeleteModalFormAction($(this), logId);
             });
 
+        $('.delete-transaction-confirmation-modal-button')
+            .on('click', function(){
+                var transactionId = $(this).parent().parent().parent().prev().text();
+                modifyDeleteModalFormAction($(this), transactionId);
+            });
+
         function modifyDeleteModalFormAction(target, id){
             var modal = $(target.attr('href'));
             var formAction = window.location.href;
@@ -405,6 +411,12 @@
                         suggestionsContainer.hide('fast');
                     })
             }
+
+        $('.display-employee-payslip-button')
+            .on('click', function(e){
+                e.preventDefault();
+                
+            })
 
         $('.start-payroll-transact-button')
             .on('click', function(e){

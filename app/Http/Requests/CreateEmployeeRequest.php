@@ -48,7 +48,7 @@ class CreateEmployeeRequest extends Request
             'religion' => 'required',
             'course' => 'required_unless:educational_attainment,None,Elementary,Some High School,High School Degree',
             'spouse_name' => 'required_if:civil_status,Married',
-            'number_of_children' => 'required_if:civil_status,Married|numeric',
+            'number_of_children' => 'required_if:civil_status,Married',
             'mother_name' => 'required',
             'father_name' => 'required'
         ];

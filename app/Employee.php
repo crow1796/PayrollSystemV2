@@ -98,4 +98,16 @@ class Employee extends Model implements SluggableInterface
     public function rates(){
         return $this->morphMany('\App\Rate', 'rateable');
     }
+
+    public function investments(){
+        return $this->belongsToMany('\App\Investment', 'employee_investment', 'employee_id', 'investment_id')
+                    ->withTimestamps()
+                    ->withPivot('deduction');
+    }
+
+    public function expenses(){
+        return $this->belongsToMany('\App\Expenses', 'employee_expenses', 'employee_id', 'expenses_id')
+                    ->withTimestamps()
+                    ->withPivot('deduction');
+    }
 }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+    <a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
     <h2 class="page-header">
         Create Employees DTR <small>Import Excel/CSV Files</small>
         <a href="{{ url('payroll/dtr/manual') }}" class="btn btn-xs btn-danger">

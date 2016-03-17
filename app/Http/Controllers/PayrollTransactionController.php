@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\EmployeeRepository;
 use App\Repositories\Eloquent\DailyRecordRepository;
+use App\Repositories\Eloquent\PayrollTransactionRepository;
 use App\Http\Requests\EmployeeTransactionRequest;
 use App\Support\Excel\EmployeeDTRListImport;
 use App\Support\File\FileManager;
@@ -18,28 +19,32 @@ class PayrollTransactionController extends Controller
 {
 
     protected $employeeRepository;
+    protected $payrollTransactionRepository;
     protected $dtrRepository;
     protected $payroll;
 
     public function __construct(EmployeeRepository $employeeRepository, 
                                 DailyRecordRepository $dtrRepository,
-                                PayrollTransaction $payroll){
+                                PayrollTransaction $payroll,
+                                PayrollTransactionRepository $payrollTransactionRepository){
         $this->employeeRepository = $employeeRepository;
         $this->dtrRepository = $dtrRepository;
         $this->payroll = $payroll;
+        $this->payrollTransactionRepository = $payrollTransactionRepository;
     }
 
     public function index(){
-        return view('payroll-transaction_pages.index');
+        $transactions = $this->payrollTransactionRepository->all();
+        return view('payroll-transaction_pages.index', compact(['transactions']));
     }
 
     public function create(){
         return view('payroll-transaction_pages.create');
     }
 
-    public function confirmTransaction(Request $request){
-        $salaryStack = $this->payroll->transact($request->all());
-        $employees = $salaryStack->employees();
+    public function show(\App\PayrollTransaction $transaction){
+        $salaryStack = $this->payroll->transact($transaction->toArray());
+        return view('payroll-transaction_pages.show', compact(['transaction', 'salaryStack']));
     }
 
     public function createManual(){
@@ -52,19 +57,33 @@ class PayrollTransactionController extends Controller
     }
 
     public function store(Request $request){
+        $transactionData = $request->all();
+        unset($transactionData['_token']);
 
+        $salaryStack = $this->payroll->transact($transactionData);
+        $created = $this->payrollTransactionRepository->create($transactionData);
+        return $created ? redirect('payroll') : redirect()->back()->withMessage('Cannot create transaction.');
     }
 
-    public function edit($slug){
-
+    public function edit(\App\PayrollTransaction $transaction){
+        return view('payroll-transaction_pages.edit', compact(['transaction']));
     }
 
-    public function update($slug, $data){
+    public function update(Request $request, \App\PayrollTransaction $transaction){
+        $transactionData = $request->all();
+        unset($transactionData['_token']);
+        unset($transactionData['_method']);
 
+        $updated = $this->payrollTransactionRepository->updateByModel($transactionData, $transaction);
+        return $updated ? redirect('payroll/' . $transaction->id) : redirect()->back()->withMessage('Cannot update transaction.');
     }
 
-    public function destroy($slug){
-    	
+    public function destroy(\App\PayrollTransaction $transaction){
+    	if(!$this->payrollTransactionRepository
+                ->deleteByModel($transaction)){
+            return redirect('/payroll')->withMessage('Unable to delete transaction.');
+        }
+        return redirect('/payroll');
     }
 
     public function storeImport(Request $request, FileManager $fileManager){

@@ -27,7 +27,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => ['notauth']], function(){
     	Route::get('/', 'PayrollPagesController@index');
-
+        Route::get('/employees/{employees}/edit/rates', 'EmployeeManagementController@editRates');
+        Route::put('/employees/{employees}/update-rates', 'EmployeeManagementController@updateRates');
+        Route::get('/employees/{employees}/edit/deductions', 'EmployeeManagementController@editDeductions');
+        Route::put('/employees/{employees}/update-deductions', 'EmployeeManagementController@updateDeductions');
         Route::resource('/employees', 'EmployeeManagementController');
 
         // /payroll/*
@@ -42,8 +45,6 @@ Route::group(['middleware' => ['web']], function () {
                     Route::post('/uploading', 'PayrollTransactionController@storeImport');
                 });
             });
-            // Transaction confirm
-            Route::post('/create/confirm', 'PayrollTransactionController@confirmTransaction');
         });
         Route::resource('/payroll', 'PayrollTransactionController');
 

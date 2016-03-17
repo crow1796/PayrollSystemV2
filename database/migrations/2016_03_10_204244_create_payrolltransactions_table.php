@@ -14,6 +14,9 @@ class CreatePayrolltransactionsTable extends Migration
     {
         Schema::create('payrolltransactions', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('cutoff_start');
+            $table->date('cutoff_end');
+            $table->string('cutoff');
             $table->timestamps();
         });
     }

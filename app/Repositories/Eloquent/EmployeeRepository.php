@@ -34,4 +34,33 @@ class EmployeeRepository extends Repository{
 	public function updateByModel($data = array(), $model){
 		return $this->employeeRegistrar->updateFromModel($model, $data);
 	}
+
+	public function updateRates($employee, $data){
+		return $this->employeeRegistrar->updateRates($employee, $data);
+	}
+
+	public function updateDeductions($request, $employee){
+		$expenses = $employee->expenses;
+		$investments = $employee->investments;
+
+		for($i = 0; $i < $expenses->count(); $i++){
+		    $expenses[$i]->pivot->deduction = $request->expenses[$i];
+		    $expenses[$i]->pivot->save();
+		}
+
+		for($i = 0; $i < $investments->count(); $i++){
+		    $investments[$i]->pivot->deduction = $request->investments[$i];
+		    $investments[$i]->pivot->save();
+		}
+
+		return true;
+	}
+
+	public function rateKeys(){
+	    return $this->employeeRegistrar->rateKeys();
+	}
+
+	public function rateNames(){
+	    return $this->employeeRegistrar->rateNames();
+	}
 }

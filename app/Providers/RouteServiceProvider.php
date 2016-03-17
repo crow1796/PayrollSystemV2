@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('calendar', '\App\Event');
         $router->model('control_access', '\App\User');
         $router->model('log', '\App\Log');
+        $router->model('payroll', '\App\PayrollTransaction');
     }
 
     /**

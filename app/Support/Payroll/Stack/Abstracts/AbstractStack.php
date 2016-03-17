@@ -33,4 +33,8 @@ abstract class AbstractStack implements Stack {
 	public function set($key, $index, $value){
 		$this->stack[$key][$index] = $value;
 	}
+
+	public function count(){
+		return count($this->stack);
+	}
 }

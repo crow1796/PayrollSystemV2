@@ -6,6 +6,7 @@
 
 @section('content')
     @include('errors.partials._requesterrors')
+    <a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
     <h2 class="page-header">Edit User <small>Fill required information.</small></h2>
     
     {!! Form::model($user, ['method' => 'PUT', 'url' => url('/control-access', $user->id)]) !!}

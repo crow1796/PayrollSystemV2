@@ -6,8 +6,9 @@
 
 @section('content')
     @include('errors.partials._requesterrors')
+    <a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
     <h2 class="page-header">Edit Employee <small>{{ $employee->fullname }} | {{ $employee->id }}</small></h2>
-    {!! Form::model($employee, ['url' => url('/employees', $employee->id), 'method' => 'PUT']) !!}
+    {!! Form::model($employee, ['url' => url('/employees', $employee->id), 'method' => 'PUT', 'files' => true]) !!}
         <div class="row">
             <div class="col-sm-8">
                 <div class="panel panel-default">

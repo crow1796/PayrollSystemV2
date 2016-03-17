@@ -1019,6 +1019,22 @@ textarea {
       padding: 7px 14px;
       border: 1px solid #dedede; }
 
+.employee-payslip-container .employee-payslip .pre-payslip {
+  max-height: 400px !important;
+  overflow-y: scroll; }
+
+.text-primary {
+  color: #3D72F9 !important; }
+
+.text-success {
+  color: #95E06C !important; }
+
+.text-danger {
+  color: #dd1533 !important; }
+
+.text-warning {
+  color: #f9c43d !important; }
+
 footer {
   margin-top: 50px;
   background-color: #f3f3f3;

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	
+	<a href="{{ \URL::previous() }}" class="btn btn-link btn-xs">&laquo; Back</a>
 	<div class="row employee-information-header-container">
 		<div class="col-sm-offset-3 col-sm-9">
 			<h2>
@@ -25,6 +25,16 @@
 							</a>
 						</li>
 						<li role="presentation">
+							<a href="{{ url('employees', $employee->id) }}/edit/rates">
+							    <span class="fa fa-dollar"></span> Edit Rates
+							</a>
+						</li>
+						<li role="presentation">
+							<a href="{{ url('employees', $employee->id) }}/edit/deductions">
+							    <span class="fa fa-dollar"></span> Edit Deductions
+							</a>
+						</li>
+						<li role="presentation">
 							<a data-toggle="modal" href="#delete-confirmation-modal">
 							    <span class="fa fa-trash"></span> Delete
 							</a>
@@ -38,14 +48,14 @@
 	<div class="row employee-information-content-container">
 		<div class="col-sm-3">
 			<div class="employee-display-photo-container">
-				<img src="{{ url('images/default_user_thumbnail.png') }}" alt="" class="center-block img-thumbnail img-responsive">
+				<img src="{{ !$employee->additionalInformation->display_photo ? url('images/default_user_thumbnail.png') : url($employee->additionalInformation->display_photo) }}" alt="" class="center-block img-thumbnail img-responsive">
 			</div>
 			
 			<div class="employee-information-important-container">
 				<ul class="bmpc-list">
 					<li class="bmpc-list-item">
 						<span class="bmpc-list-item-title"><span class="fa fa-user"></span> Employee ID</span>
-						<span class="bmpc-list-item-content">{{ $employee->id }}</span>
+						<span class="bmpc-list-item-content">{{ $employee->id }} <span class="fa fa-circle {{ $employee->active ? 'text-success' : 'text-danger' }}" title="{{ $employee->active ? 'Active' : 'Inactive' }}"></span></span>
 						<span class="bmpc-list-item-content">{{ $employee->designation->name }}</span>
 						<span class="bmpc-list-item-content">{{ $employee->department->name }}</span>
 						<span class="bmpc-list-item-content">{{ $employee->businessUnit->name }}</span>
@@ -100,12 +110,26 @@
 						Contact Information
 					</a>
 				</li>
+				<li role="presentation">
+					<a href="#rates" data-toggle="tab">
+						<span class="pill-highlighter"></span>
+						Rates
+					</a>
+				</li>
+				<li role="presentation">
+					<a href="#deductions" data-toggle="tab">
+						<span class="pill-highlighter"></span>
+						Deductions
+					</a>
+				</li>
 			</ul>
 			{{-- /.nav-pills --}}
 			<div class="tab-content">
 				@include('employee-management_pages.partials._personal_tab')
 				@include('employee-management_pages.partials._benefits_tab')
 				@include('employee-management_pages.partials._contact-information_tab')
+				@include('employee-management_pages.partials._rates_tab')
+				@include('employee-management_pages.partials._deductions_tab')
 			</div>
 			{{-- /.tab-content --}}
 		</div>

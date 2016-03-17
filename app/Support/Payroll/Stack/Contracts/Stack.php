@@ -8,4 +8,5 @@ interface Stack {
 	public function all();
 	public function get($key, $index);
 	public function set($key, $index, $value);
+	public function count();
 }

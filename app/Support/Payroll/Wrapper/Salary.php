@@ -16,7 +16,7 @@ class Salary {
 		$this->workDays = $workDays;
 		$this->workHours = $workHours;
 		$this->workIncomes = $workIncomes;
-		$this->grossPay = $this->grossPay();
+		$this->initialGrossPay();
 		$this->deductions = $deductions;
 		$this->netPay = $this->netPay();
 	}
@@ -50,9 +50,6 @@ class Salary {
 	}
 
 	public function grossPay(){
-		foreach($this->workIncomes as $workIncome){
-			$this->grossPay += $workIncome;
-		}
 		return $this->grossPay;
 	}
 
@@ -91,5 +88,16 @@ class Salary {
 		}
 
 		return $totalExpenses;
+	}
+
+	public function setDeductions($deductions){
+		$this->deductions = $deductions;
+		$this->netPay = $this->netPay();
+	}
+
+	protected function initialGrossPay(){
+		foreach($this->workIncomes as $workIncome){
+			$this->grossPay += $workIncome;
+		}
 	}
 }

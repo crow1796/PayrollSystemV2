@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(EventTypeTableSeeder::class);
+        $this->call(ExpensesTableSeeder::class);
+        $this->call(InvestmentsTableSeeder::class);
+        $this->call(RateTableSeeder::class);
         // $this->call(EventTableSeeder::class);
     }
 }

@@ -34,8 +34,7 @@ class CreateAdditionalInformationTable extends Migration
             $table->string('name_of_spouse')
                     ->nullable();
             $table->integer('number_of_children')
-                    ->nullable()
-                    ->default(0);
+                    ->nullable();
             $table->string('gender')
                     ->nullable();
             $table->string('educational_attainment')

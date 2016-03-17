@@ -1247,6 +1247,30 @@ textarea{
     }
 }
 
+.employee-payslip-container{
+    .employee-payslip{
+        .pre-payslip{
+            max-height: 400px !important;
+            overflow-y: scroll;
+        }
+    }
+}
+
+.text{
+    &-primary{
+        color: $primary-color !important;
+    }
+    &-success{
+        color: $success-color !important;
+    }
+    &-danger{
+        color: $danger-color !important;
+    }
+    &-warning{
+        color: $warning-color !important;
+    }
+}
+
 footer{
     margin-top: 50px;
     background-color: $light-gray;

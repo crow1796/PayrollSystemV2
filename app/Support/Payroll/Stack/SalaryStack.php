@@ -43,4 +43,8 @@ class SalaryStack{
 		}
 		return $employees;
 	}
+
+	public function count(){
+		return count($this->stack);
+	}
 }

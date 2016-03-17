@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateEmployeeRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\RepositoryInterface;
 use App\Repositories\ListsRepository;
+use App\Http\Requests\UpdateRatesRequest;
+use App\Http\Requests\UpdateDeductionsRequest;
 
 class EmployeeManagementController extends Controller
 {
@@ -76,7 +78,13 @@ class EmployeeManagementController extends Controller
      */
     public function show(\App\Employee $employee)
     {
-        return view('employee-management_pages.show', compact(['employee']));
+        $employeeRates = $employee->rates->isEmpty() ? $employee->department->rates[0] : $employee->rates[0];
+        $rateKeys = $this->employeeRepository->rateKeys();
+        $rateNames = $this->employeeRepository->rateNames();
+
+        $expenses = $employee->expenses;
+        $investments = $employee->investments;
+        return view('employee-management_pages.show', compact(['employee', 'employeeRates', 'rateNames', 'rateKeys', 'expenses', 'investments']));
     }
 
     /**
@@ -93,6 +101,32 @@ class EmployeeManagementController extends Controller
         $businessUnits = $this->listsRepository->lists('\App\BusinessUnit', 'name', 'id');
         $benefits = $this->listsRepository->listsAsSimpleArray('\App\Benefit', 'name', 'id');
         return view('employee-management_pages.edit', compact(['employee', 'positions','departments','designations','businessUnits','benefits']));
+    }
+
+    public function editRates(\App\Employee $employee){
+        $employeeRates = $employee->rates->isEmpty() ? $employee->department->rates[0] : $employee->rates[0];
+        $rateKeys = $this->employeeRepository->rateKeys();
+        $rateNames = $this->employeeRepository->rateNames();
+
+        return view('employee-management_pages.edit_rates', compact(['employee', 'employeeRates', 'rateNames', 'rateKeys']));
+    }
+
+    public function updateRates(UpdateRatesRequest $request, \App\Employee $employee){
+        $updated = $this->employeeRepository->updateRates($employee, $request->all());
+        return redirect('/employees/' . $employee->id)->withMessage('Employee Rates updated successfully.');
+    }
+
+    public function editDeductions(\App\Employee $employee){
+        $expenses = $employee->expenses;
+        $investments = $employee->investments;
+
+        return view('employee-management_pages.edit_deductions', compact(['employee', 'expenses', 'investments']));
+    }
+
+    public function updateDeductions(UpdateDeductionsRequest $request, \App\Employee $employee){
+        $this->employeeRepository->updateDeductions($request, $employee);
+
+        return redirect('/employees/' . $employee->id)->withMessage('Employee Deductions updated successfully.');
     }
 
     /**
