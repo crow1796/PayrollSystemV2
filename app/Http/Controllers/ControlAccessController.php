@@ -21,6 +21,7 @@ class ControlAccessController extends Controller
 	protected $logRepository;
 
 	public function __construct(UserRepository $userRepository, ListsRepository $listsRepository, LogRepository $logRepository){
+        $this->middleware('manager', ['except' => ['index', 'logs']]);
 		$this->userRepository = $userRepository;
 		$this->listsRepository = $listsRepository;
 		$this->logRepository = $logRepository;

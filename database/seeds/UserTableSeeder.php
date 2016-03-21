@@ -15,20 +15,35 @@ class UserTableSeeder extends Seeder
 
         DB::table('bmpc_users')->delete();
 
+        // $users = [
+        // 	[
+        //         'role_id' => 1,
+        //         'username' => '2014-F0089', 
+        //         'password' => bcrypt('admin'), 
+        //         'first_name' => 'Joshua', 
+        //         'middle_name' => 'Agagdan', 
+        //         'last_name' => 'Tundag', 
+        //         'email' => 'joshuatundag@gmail.com',
+        //         'slug' => 'admin',
+        //         'created_at' => \Carbon\Carbon::now(),
+        //         'updated_at' => \Carbon\Carbon::now()
+        //     ],
+        // ];
+
         $users = [
-        	[
-                'permission_id' => 1,
-                'username' => '2014-F0089', 
-                'password' => bcrypt('admin'), 
-                'first_name' => 'Joshua', 
-                'middle_name' => 'Agagdan', 
-                'last_name' => 'Tundag', 
-                'email' => 'joshuatundag@gmail.com',
-                'slug' => 'admin',
-                'created_at' => \Carbon\Carbon::now(),
-                'updated_at' => \Carbon\Carbon::now()
-            ],
-        ];
+             [
+                    'permission_id' => 1,
+                    'username' => '2014-F0089', 
+                    'password' => bcrypt('admin'), 
+                    'first_name' => 'Joshua', 
+                    'middle_name' => 'Agagdan', 
+                    'last_name' => 'Tundag', 
+                    'email' => 'joshuatundag@gmail.com',
+                    'slug' => 'admin',
+                    'created_at' => \Carbon\Carbon::now(),
+                    'updated_at' => \Carbon\Carbon::now()
+                ],
+            ];
 
         DB::table('bmpc_users')->insert($users);
     }

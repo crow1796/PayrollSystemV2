@@ -64,7 +64,6 @@ class AuthController extends Controller
     }
 
     public function login(LoginCredentialsRequest $request){
-
         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
             Event::fire('auth.login', array(Auth::user()));
             return redirect('/');

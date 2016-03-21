@@ -9,7 +9,7 @@
     </div>
     <div class="sidebar-menu-details">
         <p class="text-center">
-            {{ Auth::user()->permission->name }}
+            {{ \Auth::user()->permission->name }}
         </p>
         <img src="{{ !Auth::user()->employmentInformation->additionalInformation->display_photo ? url('images/default_user_thumbnail.png') : url(Auth::user()->employmentInformation->additionalInformation->display_photo) }}" alt="" class="center-block img-thumbnail img-responsive">
         <ul class="nav nav-pills nav-stacked">

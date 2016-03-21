@@ -20,6 +20,7 @@ class EmployeeManagementController extends Controller
 
     public function __construct(RepositoryInterface $employeeRepository, 
                                 ListsRepository $listsRepository){
+        $this->middleware('manager', ['except' => ['index', 'show']]);
         $this->employeeRepository = $employeeRepository;
         $this->listsRepository = $listsRepository;
     }

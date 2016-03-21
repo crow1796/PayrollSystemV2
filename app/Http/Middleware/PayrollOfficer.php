@@ -16,7 +16,7 @@ class PayrollOfficer
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        $userPermissionId = Auth::guard($guard)->user()->permission->slug;
+        $userPermissionId = \Auth::guard($guard)->user()->permission->slug;
         if($userPermissionId != 'payroll-officer'){
             return redirect('/')
                     ->withMessage('You don\'t have permission to access this section. Please ask the administrator for permission.');

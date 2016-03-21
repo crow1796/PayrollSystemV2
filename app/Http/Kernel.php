@@ -51,11 +51,12 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\Administrator::class,
         'payroll_officer' => \App\Http\Middleware\PayrollOfficer::class,
-        'manager' => \App\Http\Middleware\Manager::class,
+        'manager' => \App\Http\Middleware\RedirectIfManager::class,
         'leader' => \App\Http\Middleware\Leader::class,
         'staff' => \App\Http\Middleware\Staff::class,
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+        'acl' => \App\Http\Middleware\CheckPermission::class,
     ];
 }

@@ -210,13 +210,15 @@ class EmployeeRegistrar implements Registrar{
 		$additionalInformation->mother_name = $data['mother_name'];
 		$additionalInformation->father_name = $data['father_name'];
 
-		$file = $data['display_photo'];
-		$fileExtension = $file->getClientOriginalExtension();
-		$originalName = trim(trim($file->getClientOriginalName(), '.'.$fileExtension));
-		$filename = \Carbon\Carbon::now()->format('mdY') . '_' . md5($file->getFilename());
-		$filename = $filename . '.' . $fileExtension;
-		\File::move($file, public_path('uploads/images/' . $filename));
-		$additionalInformation->display_photo = 'uploads/images/' . $filename;
+		if(isset($data['display_photo'])){
+			$file = $data['display_photo'];
+			$fileExtension = $file->getClientOriginalExtension();
+			$originalName = trim(trim($file->getClientOriginalName(), '.'.$fileExtension));
+			$filename = \Carbon\Carbon::now()->format('mdY') . '_' . md5($file->getFilename());
+			$filename = $filename . '.' . $fileExtension;
+			\File::move($file, public_path('uploads/images/' . $filename));
+			$additionalInformation->display_photo = 'uploads/images/' . $filename;
+		}
 
 		$additionalInformation->employee()->associate($this->model);
 

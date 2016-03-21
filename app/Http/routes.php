@@ -24,9 +24,8 @@
 
 Route::group(['middleware' => ['web']], function () {
 	Route::auth();
-
     Route::group(['middleware' => ['notauth']], function(){
-    	Route::get('/', 'PayrollPagesController@index');
+        Route::get('/', 'PayrollPagesController@index');
         Route::get('/employees/{employees}/edit/rates', 'EmployeeManagementController@editRates');
         Route::put('/employees/{employees}/update-rates', 'EmployeeManagementController@updateRates');
         Route::get('/employees/{employees}/edit/deductions', 'EmployeeManagementController@editDeductions');
@@ -66,5 +65,4 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/get-employee-payslip', 'PayrollTransactionController@employeePayslip');
         });
     });
-
 });

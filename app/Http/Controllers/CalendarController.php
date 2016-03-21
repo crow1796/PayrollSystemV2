@@ -17,6 +17,7 @@ class CalendarController extends Controller
 
     public function __construct(EventRepository $eventRepository,
                                 ListsRepository $listsRepository){
+        $this->middleware('manager', ['except' => ['index']]);
         $this->eventRepository = $eventRepository;
         $this->listsRepository = $listsRepository;
     }

@@ -27,6 +27,7 @@ class PayrollTransactionController extends Controller
                                 DailyRecordRepository $dtrRepository,
                                 PayrollTransaction $payroll,
                                 PayrollTransactionRepository $payrollTransactionRepository){
+        $this->middleware('manager', ['except' => ['index', 'show']]);
         $this->employeeRepository = $employeeRepository;
         $this->dtrRepository = $dtrRepository;
         $this->payroll = $payroll;

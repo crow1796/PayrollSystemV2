@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use \Auth;
 
-class Administrator
+class RedirectIfManager
 {
     /**
      * Handle an incoming request.
@@ -17,7 +16,7 @@ class Administrator
     public function handle($request, Closure $next, $guard = null)
     {
         $userPermissionId = \Auth::guard($guard)->user()->permission->slug;
-        if($userPermissionId != 'administrator'){
+        if($userPermissionId == 'manager'){
             return redirect('/')
                     ->withMessage('You don\'t have permission to access this section. Please ask the administrator for permission.');
         }
